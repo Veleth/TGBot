@@ -20,33 +20,40 @@ from telepot.loop import MessageLoop
 from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, ForceReply
 import memegetter
 import stathandler
+import emoji
 
 secret = open("secret.txt", 'r').readline()
 bot = telepot.Bot(secret)
 botname = "chat_metrics_bot"
 #To be removed soon
 birth = time.time() #right now the bot replies what it sees, so this prevents it from sending old messages
-bot.sendMessage(-257580042, "Hello there") #Testing zone group
+#hey = emoji.emojize("Hello there, fellow humans :thumbs_up:")
+bot.sendMessage(-257580042, "I rise yet again") #Testing zone group
 
 
 def handle(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
 
-    text = msg['text']
-    print(content_type, chat_type, chat_id, msg['text'])
-    if text == "/kys@"+botname and msg['date']>birth:
-        bot.sendMessage(chat_id, "Cya")
-        exit(0)
+    if content_type == 'text':
+        text = msg['text']
+        print(content_type, chat_type, chat_id, msg['text'])
 
-    elif text == "/meme@"+botname and msg['date']>birth:
-        bot.sendPhoto(chat_id, memegetter.getMeme("dankmemes"))
+        #bloom filter flush && /roll
+        if text == "/kys@"+botname and msg['date']>birth:
+            bot.sendMessage(chat_id, "Cya")
+            exit(0)
 
-    elif text == "/stats@"+botname and msg['date']>birth:
-        ans = stathandler.getStats(chat_id)
-        bot.sendMessage(chat_id, ans)
+        elif text == "/meme@"+botname and msg['date']>birth:
+            bot.sendPhoto(chat_id, memegetter.getMeme(chat_id,"dankmemes"))
 
-    elif content_type == 'text':
-        stathandler.tally(msg)
+        elif text == "/stats@"+botname and msg['date']>birth:
+            ans = stathandler.getStats(chat_id)
+            bot.sendMessage(chat_id, ans, parse_mode='html')
+
+        else:
+            stathandler.tally(msg)
+
+    #support other kinds of content
         
 MessageLoop(bot, handle).run_as_thread()
 while True:

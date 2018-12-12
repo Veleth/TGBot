@@ -70,6 +70,7 @@ def tally(msg):
 
     xd = re.match(r"^[xX][dD]+$", msg['text'])
     if xd is not None: #TODO: CHECK IF IT WORKS
+        xd = msg['text']
         user['x'] += 1
         totals['x'] += 1
         user['d'] += len(xd)-1
@@ -96,7 +97,7 @@ def getStats(cid):
     msg = ""
     for u in people.items():
         if(u[0] == "totals"):
-            msg += "Totals for group: "+str(cid)+" Total messages: "+str(u[1]['messages'])+" Total characters: "+str(u[1]['characters'])+"\n"#expand later
+            msg += "<b>Totals for group:</b>\n Total messages: "+str(u[1]['messages'])+"\n Total characters: "+str(u[1]['characters'])+"\n"#expand later
         else:
-            msg += "Name: "+u[1]['name']+"message count: "+str(u[1]['messages'])+" total characters: "+str(u[1]['characters'])+"\n"
+            msg += "\n<b>Name: "+u[1]['name']+"</b<\nMessages: "+str(u[1]['messages'])+"\nCharacters: "+str(u[1]['characters'])+"\n"
     return msg
