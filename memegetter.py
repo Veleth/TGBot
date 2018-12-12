@@ -47,3 +47,5 @@ def getMeme(sub):
             break
     request.urlretrieve(s.url, "temp.jpg")
     return open("temp.jpg", "rb")
+
+#getMeme("dankmemes")

@@ -1,0 +1,10 @@
+pass.txt
+secret.txt
+temp.jpg
+bloom.txt
+test.py
+
+.vscode
+venv
+__pycache__
+stats
