@@ -39,11 +39,7 @@ def handle(msg):
         print(content_type, chat_type, chat_id, msg['text'])
 
         #bloom filter flush && /roll
-        if text == "/kys@"+botname and msg['date']>birth:
-            bot.sendMessage(chat_id, "Cya")
-            exit(0)
-
-        elif text == "/meme@"+botname and msg['date']>birth:
+        if text == "/meme@"+botname and msg['date']>birth:
             bot.sendPhoto(chat_id, memegetter.getMeme(chat_id,"dankmemes"))
 
         elif text == "/stats@"+botname and msg['date']>birth:

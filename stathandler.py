@@ -99,5 +99,5 @@ def getStats(cid):
         if(u[0] == "totals"):
             msg += "<b>Totals for group:</b>\n Total messages: "+str(u[1]['messages'])+"\n Total characters: "+str(u[1]['characters'])+"\n"#expand later
         else:
-            msg += "\n<b>Name: "+u[1]['name']+"</b<\nMessages: "+str(u[1]['messages'])+"\nCharacters: "+str(u[1]['characters'])+"\n"
+            msg += "\n<b>Name: "+u[1]['name']+"</b>\nMessages: "+str(u[1]['messages'])+"\nCharacters: "+str(u[1]['characters'])+"\n"
     return msg
