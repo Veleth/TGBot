@@ -1,7 +1,5 @@
-pass.txt
-secret.txt
+*.txt
 temp.jpg
-bloom.txt
 test.py
 
 .vscode
