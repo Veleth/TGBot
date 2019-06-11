@@ -10,6 +10,7 @@ detailed information regarding user activity in the group, as well as provide so
 * Implement personalized butlering features
 * Implement a wider variety of features
 * Remove obsolete code
+* Migrate from telepot to a different API library (I've just noticed that it is no longer supported, so I guess it's a necessary move sometime soon)
 
 ### Setup manual
 As of the time of this text being written, this bot requires 3 libraries - telepot, praw, and emoji (the last one is just for experimentation though). To get them use `pip install $name`. If you don't have [pip](https://pypi.org/project/pip/), I advise you to get it. It's cool and free.
