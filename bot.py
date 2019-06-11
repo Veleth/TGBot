@@ -24,11 +24,10 @@ import emoji
 
 secret = open("secret.txt", 'r').readline()
 bot = telepot.Bot(secret)
-botname = "chat_metrics_bot"
-#To be removed soon
-birth = time.time() #right now the bot replies what it sees, so this prevents it from sending old messages
+botname = bot.getMe()['username']
 #hey = emoji.emojize("Hello there, fellow humans :thumbs_up:")
-bot.sendMessage(-257580042, "I rise yet again") #Testing zone group
+# testChat = -257580042
+# bot.sendMessage(testChat, "I rise yet again") #Start debug msg
 
 
 def handle(msg):
@@ -39,10 +38,10 @@ def handle(msg):
         print(content_type, chat_type, chat_id, msg['text'])
 
         #bloom filter flush && /roll
-        if text == "/meme@"+botname and msg['date']>birth:
+        if text == "/meme@"+botname and msg['date']:
             bot.sendPhoto(chat_id, memegetter.getMeme(chat_id,"dankmemes"))
 
-        elif text == "/stats@"+botname and msg['date']>birth:
+        elif text == "/stats@"+botname and msg['date']:
             ans = stathandler.getStats(chat_id)
             bot.sendMessage(chat_id, ans, parse_mode='html')
 
@@ -52,7 +51,10 @@ def handle(msg):
     #support other kinds of content
         
 MessageLoop(bot, handle).run_as_thread()
-while True:
-    time.sleep(2)
-
+try:
+    while True:
+        time.sleep(2)
+except KeyboardInterrupt: #Debug
+    # bot.sendMessage(testChat, "Interrupt, clocking off now")
+    exit()
 #TODO 1: Make use of dictionaries for bot commands - let the message lead to a function that is to be executed thereon, instead of this barbaric elif list.
