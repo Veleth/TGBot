@@ -8,3 +8,5 @@ test.py
 venv
 __pycache__
 stats
+
+.idea
