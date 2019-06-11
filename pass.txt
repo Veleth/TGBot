@@ -1,0 +1,4 @@
+$redditClientID
+$redditClientSecret
+$redditPassword
+$redditUsername
